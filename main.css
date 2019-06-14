@@ -5,7 +5,7 @@
   display: none;
 }
 .select-selected {
-  background: var(--main-color);
+  background: rgba(0, 191, 255, 0.3);
   transition: all 250ms ease-in;
 }
 .select-selected::after {
@@ -33,7 +33,7 @@
   font-family: var(--indie-flower);
 }
 .select-items option {
-  border-bottom-color: var(--main-color);
+  border-bottom-color: rgba(0, 191, 255, 0.3);
   transition: all 250ms ease-in;
 }
 .select-selected:hover,
