@@ -1,5 +1,5 @@
-const x = document.querySelectorAll(".select-style");
-const y = document.querySelectorAll("select");
+const x = document.querySelectorAll('.select-style');
+const y = document.querySelectorAll('select');
 class Select {
   // Create a new element item
   constructor(_value, _element, _className) {
@@ -14,7 +14,7 @@ class Select {
   }
   createNewElement(text) {
     this.a = document.createElement(this.element);
-    this.a.setAttribute("class", this.className);
+    this.a.setAttribute('class', this.className);
     this.a.innerHTML = text;
   }
   addElements(e) {
@@ -24,12 +24,9 @@ class Select {
       this.value[this.i].appendChild(this.a);
 
       this.a.addEventListener('click', e => {
+        e.stopPropagation();
         e.target.nextSibling.classList.toggle('select-hide');
         e.target.classList.toggle('select-arrow-active');
-      this.a.addEventListener("click", e => {
-        e.stopPropagation();
-        e.target.nextSibling.classList.toggle("select-hide");
-        e.target.classList.toggle("select-arrow-active");
         this.closeAllSelect(e.target);
       });
     }
@@ -40,53 +37,53 @@ class Select {
       this.createNewElement(this.c);
       this.value[this.i].appendChild(this.a);
 
-      this.a.addEventListener("click", e => {
-        const s = e.target.parentNode.parentNode.querySelectorAll("select")[0];
+      this.a.addEventListener('click', e => {
+        const s = e.target.parentNode.parentNode.querySelectorAll('select')[0];
         const h = e.target.parentNode.previousSibling;
         const y = e.target.parentNode.querySelectorAll('.same-as-selected')[0];
         h.innerHTML = e.target.innerHTML;
-        if(e.target.className == 'same-as-selected'){
+        if (e.target.className == 'same-as-selected') {
           console.log(y);
-          e.target.removeAttribute('class')
+          e.target.removeAttribute('class');
         }
-        
+
         // y.removeAttribute('class');
         e.target.setAttribute('class', 'same-as-selected');
-        const y = e.target.parentNode.querySelectorAll(".same-as-selected");
-        y.forEach(i => i.removeAttribute("class"));
-        e.target.setAttribute("class", "same-as-selected");
+        const y_ = e.target.parentNode.querySelectorAll('.same-as-selected');
+        y_.forEach(i => i.removeAttribute('class'));
+        e.target.setAttribute('class', 'same-as-selected');
         h.click();
         this.updateValues(e.target.value);
       });
     }
   }
   updateValues(target) {
-    document.querySelector(this.inputField).setAttribute("value", target);
+    document.querySelector(this.inputField).setAttribute('value', target);
   }
   closeAllSelect(element) {
     var x_,
       y_,
       i,
       arrNo = [];
-    x_ = document.querySelectorAll(".select-items");
-    y_ = document.querySelectorAll(".select-selected");
+    x_ = document.querySelectorAll('.select-items');
+    y_ = document.querySelectorAll('.select-selected');
     for (i = 0; i < y_.length; i++) {
       if (element == y_[i]) {
         arrNo.push(i);
       } else {
-        y_[i].classList.remove("select-arrow-active");
+        y_[i].classList.remove('select-arrow-active');
       }
     }
     for (i = 0; i < x_.length; i++) {
       if (arrNo.indexOf(i)) {
-        x_[i].classList.add("select-hide");
+        x_[i].classList.add('select-hide');
       }
     }
   }
 }
-const a = new Select(x, "div", "select-selected");
+const a = new Select(x, 'div', 'select-selected');
 a.addElements(y);
-const b = new Select(x, "div", "select-items select-hide");
-b.inputField = "#eventInput";
+const b = new Select(x, 'div', 'select-items select-hide');
+b.inputField = '#eventInput';
 b.addElements2(y);
-document.addEventListener("click", a.closeAllSelect);
+document.addEventListener('click', a.closeAllSelect);
