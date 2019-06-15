@@ -24,7 +24,6 @@ class Select {
       this.value[this.i].appendChild(this.a);
 
       this.a.addEventListener('click', e => {
-        console.log(e.target.nextSibling);
         e.target.nextSibling.classList.toggle('select-hide');
         e.target.classList.toggle('select-arrow-active');
       });
@@ -33,19 +32,21 @@ class Select {
   doSomething2(e) {
     for (this.i; this.i < this.value.length; this.i++) {
       this.c = e[this.i].innerHTML;
-      console.log(this.c);
       this.createNewElement(this.c);
       this.value[this.i].appendChild(this.a);
 
       this.a.addEventListener('click', e => {
         const s = e.target.parentNode.parentNode.querySelectorAll('select')[0];
         const h = e.target.parentNode.previousSibling;
+        const y = e.target.parentNode.querySelectorAll('.same-as-selected')[0];
         h.innerHTML = e.target.innerHTML;
-
-        if (h.innerHTML == e.target.innerHTML) {
-          e.target.setAttribute('class', 'same-as-selected');
+        if(e.target.className == 'same-as-selected'){
+          console.log(y);
+          e.target.removeAttribute('class')
         }
-
+        
+        // y.removeAttribute('class');
+        e.target.setAttribute('class', 'same-as-selected');
         h.click();
       });
     }
