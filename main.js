@@ -7,7 +7,6 @@ class Select {
     this.b;
     this.c;
     this.i = 0;
-    this.inputField;
     this.value = _value;
     this.element = _element;
     this.className = _className;
@@ -39,26 +38,17 @@ class Select {
 
       this.a.addEventListener('click', e => {
         const s = e.target.parentNode.parentNode.querySelectorAll('select')[0];
+        s.parentNode.parentNode.querySelector('input').setAttribute('value', e.target.value);
         const h = e.target.parentNode.previousSibling;
-        const y = e.target.parentNode.querySelectorAll('.same-as-selected')[0];
         h.innerHTML = e.target.innerHTML;
-        if (e.target.className == 'same-as-selected') {
-          console.log(y);
-          e.target.removeAttribute('class');
-        }
 
-        // y.removeAttribute('class');
         e.target.setAttribute('class', 'same-as-selected');
         const y_ = e.target.parentNode.querySelectorAll('.same-as-selected');
         y_.forEach(i => i.removeAttribute('class'));
         e.target.setAttribute('class', 'same-as-selected');
         h.click();
-        this.updateValues(e.target.value);
       });
     }
-  }
-  updateValues(target) {
-    document.querySelector(this.inputField).setAttribute('value', target);
   }
   closeAllSelect(element) {
     var x_,
@@ -84,6 +74,5 @@ class Select {
 const a = new Select(x, 'div', 'select-selected');
 a.addElements(y);
 const b = new Select(x, 'div', 'select-items select-hide');
-b.inputField = '#eventInput';
 b.addElements2(y);
 document.addEventListener('click', a.closeAllSelect);
