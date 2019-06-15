@@ -7,6 +7,7 @@ class Select {
     this.b;
     this.c;
     this.i = 0;
+    this.inputField;
     this.value = _value;
     this.element = _element;
     this.className = _className;
@@ -44,8 +45,12 @@ class Select {
         y.forEach(i => i.removeAttribute("class"));
         e.target.setAttribute("class", "same-as-selected");
         h.click();
+        this.updateValues(e.target.value);
       });
     }
+  }
+  updateValues(target) {
+    document.querySelector(this.inputField).setAttribute("value", target);
   }
   closeAllSelect(element) {
     var x_,
@@ -68,9 +73,9 @@ class Select {
     }
   }
 }
-
 const a = new Select(x, "div", "select-selected");
 a.addElements(y);
 const b = new Select(x, "div", "select-items select-hide");
+b.inputField = "#eventInput";
 b.addElements2(y);
 document.addEventListener("click", a.closeAllSelect);
