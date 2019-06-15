@@ -23,17 +23,14 @@ class Select {
       this.createNewElement(this.b);
       this.value[this.i].appendChild(this.a);
 
-<<<<<<< HEAD
       this.a.addEventListener('click', e => {
         e.target.nextSibling.classList.toggle('select-hide');
         e.target.classList.toggle('select-arrow-active');
-=======
       this.a.addEventListener("click", e => {
         e.stopPropagation();
         e.target.nextSibling.classList.toggle("select-hide");
         e.target.classList.toggle("select-arrow-active");
         this.closeAllSelect(e.target);
->>>>>>> 83bc97850293d38477a91061bf33329a1c201dd4
       });
     }
   }
@@ -48,7 +45,6 @@ class Select {
         const h = e.target.parentNode.previousSibling;
         const y = e.target.parentNode.querySelectorAll('.same-as-selected')[0];
         h.innerHTML = e.target.innerHTML;
-<<<<<<< HEAD
         if(e.target.className == 'same-as-selected'){
           console.log(y);
           e.target.removeAttribute('class')
@@ -56,11 +52,9 @@ class Select {
         
         // y.removeAttribute('class');
         e.target.setAttribute('class', 'same-as-selected');
-=======
         const y = e.target.parentNode.querySelectorAll(".same-as-selected");
         y.forEach(i => i.removeAttribute("class"));
         e.target.setAttribute("class", "same-as-selected");
->>>>>>> 83bc97850293d38477a91061bf33329a1c201dd4
         h.click();
         this.updateValues(e.target.value);
       });
